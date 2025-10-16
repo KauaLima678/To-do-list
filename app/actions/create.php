@@ -3,11 +3,13 @@
 require_once('../app/db/conn.php');
 
 $task = filter_input(INPUT_POST, 'task');
+$titleTask = filter_input(INPUT_POST, 'taskTitle');
 
 
-if($task){
-    $sql = $pdo->prepare('INSERT INTO to_do_list (Task) VALUES (:task)');
+if($task && $titleTask){
+    $sql = $pdo->prepare('INSERT INTO to_do_list (Task, Title) VALUES (:task, :title)');
     $sql->bindValue(':task', $task);
+    $sql->bindValue(':title', $titleTask);
     $sql->execute();
     header('Location: /index.php');
     exit();
