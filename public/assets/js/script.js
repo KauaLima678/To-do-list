@@ -1,5 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
     const checkboxes = document.querySelectorAll('.checkbox');
+    const btnEdit = document.querySelectorAll('.edit-btn');
+    const form = document.querySelectorAll('addTaskList');
+
+        btnEdit.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // 1. Previne o redirecionamento padrão do <a>
+            event.preventDefault(); 
+            
+            // 2. Pega o ID da tarefa que será editada
+            const taskId = event.currentTarget.dataset.id;
+            
+            // 3. Encontra a div da tarefa original e o formulário de edição
+            const taskDiv = document.querySelector(`.task[data-id="${taskId}"]`);
+            const editForm = document.querySelector(`#edit-form-${taskId}`);
+            
+            if (taskDiv && editForm) {
+                // 4. APLICA AS REGRAS DE DISPLAY
+                
+                // Esconde a tarefa original
+                taskDiv.style.display = 'none'; 
+                
+                // Mostra o formulário de edição (display: flex)
+                editForm.style.display = 'flex'; 
+                
+                const originalTitle = taskDiv.dataset.title;
+                const originalDesc = taskDiv.dataset.desc;
+                
+                // Encontra os inputs dentro do formulário de edição e preenche
+                editForm.querySelector('input[name="taskTitle"]').value = originalTitle;
+                editForm.querySelector('input[name="task"]').value = originalDesc;
+
+                // Lógica de Display: Esconde/Mostra
+                taskDiv.style.display = 'none'; 
+                editForm.style.display = 'flex'; // Aplica 'display: flex'
+                
+                // Focar no primeiro input
+                editForm.querySelector('input[name="taskTitle"]').focus();
+                
+            }
+        });
+    });
 
     checkboxes.forEach(checkbox => {
         

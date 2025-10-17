@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['rou
 
 $tasks = [];
 
-$sql = $pdo->query("SELECT * FROM tasks ORDER BY id DESC");
+$sql = $pdo->query("SELECT * FROM tasks WHERE completed = 1 ORDER BY id DESC");
 
 if ($sql->rowCount() > 0) {
     $tasks = $sql->fetchAll((PDO::FETCH_ASSOC));

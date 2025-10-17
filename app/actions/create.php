@@ -7,7 +7,7 @@ $titleTask = filter_input(INPUT_POST, 'taskTitle');
 
 
 if($task && $titleTask){
-    $sql = $pdo->prepare('INSERT INTO to_do_list (Task, Title) VALUES (:task, :title)');
+    $sql = $pdo->prepare('INSERT INTO tasks (task, title) VALUES (:task, :title)');
     $sql->bindValue(':task', $task);
     $sql->bindValue(':title', $titleTask);
     $sql->execute();
