@@ -55,22 +55,18 @@ if ($sql->rowCount() > 0) {
             </div>
         </div>
         <div class="asideNav">
-            <div class="link">
-                <i class="fa-solid fa-circle-plus"></i>
-                <a href="">Adicionar Tarefa</a>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-house"></i>
-                <a href="./index.php">Home</a>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-bars-progress"></i>
-                <a href="./progress.php">Em andamento</a>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-circle-check"></i>
-                <a href="./ending.php">Concluídas</a>
-            </div>
+            <a class="link" href="./add.php">
+                <i class="fa-solid fa-plus"></i>
+                <p class="textLink">Adicionar Tarefa</p>
+            </a>
+            <a class="link" href="./index.php">
+                <i class="fa-solid fa-list-check"></i>
+                <p class="textLink">A fazer</p>
+            </a>
+            <a class="link" href="./ending.php">
+                <i class="fa-solid fa-check"></i>
+                    <p class="textLink">Concluídas</p>
+            </a>
         </div>
     </aside>
     <div class="container">

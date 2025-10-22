@@ -1,6 +1,6 @@
 const sidebar = document.getElementById('sidebar');
 const closeBtn = document.querySelector('.close');
-const textLink = document.querySelectorAll('.textLink a');
+const textLink = document.querySelectorAll('.textLink');
 const openBtn = document.getElementById('open');
 const username = document.querySelector('.username')
 const navSide = document.querySelector('.asideNav')
@@ -23,7 +23,6 @@ function openSide() {
      sidebar.style.width = '20%'
      sidebar.style.padding = '30px'
      openBtn.style.opacity = 0
-     openBtn.style.transition = '0s'
      username.style.display = "block"
      closeBtn.style.display = 'block'
 

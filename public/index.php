@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['rou
 
 $tasks = [];
 
-$sql = $pdo->query("SELECT * FROM tasks ORDER BY id DESC");
+$sql = $pdo->query("SELECT * FROM tasks WHERE completed = 0 ORDER BY id DESC");
 
 if ($sql->rowCount() > 0) {
     $tasks = $sql->fetchAll((PDO::FETCH_ASSOC));
@@ -27,11 +27,13 @@ if ($sql->rowCount() > 0) {
 
 
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="./assets/imgs/Favicon.png">
     <link rel="stylesheet" href="./assets/css/home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -44,10 +46,10 @@ if ($sql->rowCount() > 0) {
 
 <body>
     <div class="open" id="open" onclick="openSide()">
-                <span class="material-symbols-outlined">
-                    first_page
-                </span>
-            </div>
+        <span class="material-symbols-outlined">
+            first_page
+        </span>
+    </div>
     <aside id="sidebar">
         <div class="user">
             <div class="userinfo">
@@ -62,39 +64,27 @@ if ($sql->rowCount() > 0) {
             </div>
         </div>
         <div class="asideNav">
-            <div class=" link">
-                <i class="fa-solid fa-circle-plus"></i>
-                <div class="textLink" id="textLink">
-                    <a href="./cadastrar.php" id="link">Adicionar Tarefa</a>
-                </div>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-house"></i>
-                <div class="textLink" id="textLink">
-                    <a href="/" id="link">Home</a>
-                </div>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-bars-progress"></i>
-                <div class="textLink" id="textLink">
-                    <a href="./progress.php" id="link">Em andamento</a>
-                </div>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="textLink" id="textLink">
-                    <a href="./ending.php" id="link">Concluídas</a>
-                </div>
-            </div>
+            <a class="link" href="./add.php">
+                <i class="fa-solid fa-plus"></i>
+                <p class="textLink">Adicionar Tarefa</p>
+            </a>
+            <a class="link">
+                <i class="fa-solid fa-list-check"></i>
+                <p class="textLink">A fazer</p>
+            </a>
+            <a class="link" href="./ending.php">
+                <i class="fa-solid fa-check"></i>
+                    <p class="textLink">Concluídas</p>
+            </a>
         </div>
     </aside>
     <div class="container">
-        <h1>Things to do</h1>
+        <h1>Tarefas a fazer</h1>
         <div class="content">
             <div class="tasksList">
                 <?php if (count($tasks) === 0): ?>
                     <div class="notFound">
-                        <img src="./assets/imgs/notFound.png" alt="notFound" class="image">
+                        <img src="./assets/imgs/notFound2.png" alt="notFound" class="image">
                         <div class="text">
                             <p>Parece que você ainda não cadastrou nenhuma tarefa!</p>
                         </div>
@@ -150,8 +140,8 @@ if ($sql->rowCount() > 0) {
                             </form>
                         </div>
                     <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+            </div>
+        <?php endif; ?>
 
         </div>
     </div>

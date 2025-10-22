@@ -7,9 +7,9 @@ if($id){
     $sql = $pdo->prepare('DELETE FROM tasks WHERE id = (:id)');
     $sql-> bindValue(':id', $id);
     $sql->execute();
-    header('Location: /index.php');
+    header('Location: /ending.php');
     exit();
 } else {
-    header('Location: /index.php');
+    header('Location: /ending.php');
     exit();
 }

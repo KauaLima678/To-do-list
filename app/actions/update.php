@@ -8,7 +8,7 @@ $id = filter_input(INPUT_GET, 'id');
 
 
 if($taskEdit && $taskTitleEdit && $id){
-    $sql = $pdo->prepare('UPDATE to_do_list SET Task = :taskEdit, Title = :taskTitleEdit WHERE id = :id');
+    $sql = $pdo->prepare('UPDATE tasks SET task = :taskEdit, title = :taskTitleEdit WHERE id = :id');
     $sql->bindValue(':taskEdit', $taskEdit);
     $sql->bindValue(':taskTitleEdit', $taskTitleEdit);
     $sql->bindValue(':id', $id);

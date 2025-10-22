@@ -62,30 +62,18 @@ if ($sql->rowCount() > 0) {
             </div>
         </div>
         <div class="asideNav">
-            <div class=" link">
-                <i class="fa-solid fa-circle-plus"></i>
-                <div class="textLink" id="textLink">
-                    <a href="./cadastrar.php" id="link">Adicionar Tarefa</a>
-                </div>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-house"></i>
-                <div class="textLink" id="textLink">
-                    <a href="/" id="link">Home</a>
-                </div>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-bars-progress"></i>
-                <div class="textLink" id="textLink">
-                    <a href="./progress.php" id="link">Em andamento</a>
-                </div>
-            </div>
-            <div class="link">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="textLink" id="textLink">
-                    <a href="./ending.php" id="link">Concluídas</a>
-                </div>
-            </div>
+            <a class="link" href="./add.php">
+                <i class="fa-solid fa-plus"></i>
+                <p class="textLink">Adicionar Tarefa</p>
+            </a>
+            <a class="link" href="./index.php">
+                <i class="fa-solid fa-list-check"></i>
+                <p class="textLink">A fazer</p>
+            </a>
+            <a class="link" href="./ending.php">
+                <i class="fa-solid fa-check"></i>
+                    <p class="textLink">Concluídas</p>
+            </a>
         </div>
     </aside>
     <div class="container">
@@ -96,10 +84,10 @@ if ($sql->rowCount() > 0) {
                     <div class="notFound">
                         <img src="./assets/imgs/notFound.png" alt="notFound" class="image">
                         <div class="text">
-                            <p>Parece que você ainda não cadastrou nenhuma tarefa!</p>
+                            <p>Ops! Parece que você ainda não finalizou nenhuma tarefa!</p>
                         </div>
                         <div class="button">
-                            <a href="./cadastrar.php" class="addTaskBtn">Cadastre aqui </a>
+                            <a href="/" class="addTaskBtn">Página inicial</a>
                         </div>
                     </div>
                 <?php else: ?>
@@ -117,10 +105,7 @@ if ($sql->rowCount() > 0) {
                                 </div>
                             </div>
                             <div class="taskActions">
-                                <a href="#" class="edit-btn" data-id="<?= $task['id'] ?>"><i
-                                        class="fa-solid fa-pen-to-square"></i></a>
-
-                                <a href="index.php?id=<?= $task['id'] ?>&route=delete"><i
+                                <a href="ending.php?id=<?= $task['id'] ?>&route=delete"><i
                                         class="fa-solid fa-trash-can trash"></i></a>
                             </div>
                         </div>

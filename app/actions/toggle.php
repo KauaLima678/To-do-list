@@ -3,7 +3,7 @@
 $taskId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if($taskId){
-    $sql = 'UPDATE to_do_list SET Completed = NOT Completed WHERE Id = :id';
+    $sql = 'UPDATE tasks SET completed = NOT completed WHERE Id = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
