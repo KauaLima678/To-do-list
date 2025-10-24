@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form method="post">
             <div class="inputContent">
                 <label for="email" class="label">Email</label>
-                <div class="input <?= $error_message ? 'inputErr' : '' ?>">
+                <div class="<?= $error_message ? 'inputErr' : 'input' ?>">
                     <i class="fa-regular fa-envelope icon"></i>
                     <input type="email" name="email" placeholder="Insira seu Email">
                 </div>
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="inputContent password">
                 <label for="senha" class="label">Senha</label>
-                <div class="input">
+                <div class="<?= $error_message ? 'inputErr' : 'input' ?>">
                     <i class="fa-solid fa-lock icon"></i>
                     <input type="password" name="senha" placeholder="Digite sua senha" id="senha">
                     <i  class="fa-solid fa-eye-slash icon" id="eye"></i>
