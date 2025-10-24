@@ -12,6 +12,7 @@ body {
   min-height: 100vh;
   background-color: #fff;
   color: #010101;
+  overflow: hidden;
 }
 
 .open {
@@ -477,6 +478,7 @@ display: none;
   right: 30px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  animation: enterToast 1s ease;
 
   &::after{
     content: '';
@@ -486,6 +488,14 @@ display: none;
     left: 0;
     height: 3px;
     background-color: #35ff3f;
+    animation: timeBar 6s ease;
+  }
+  
+
+  .iconToast.deleteIcon{
+    i{
+      color: red;
+    }
   }
 
   .iconToast{
@@ -504,3 +514,50 @@ display: none;
     }
   }
 }
+
+.delete::after{
+   content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: #ff0000;
+    animation: timeBar 6s ease;
+}
+
+.toast.toastExit{
+  animation: exitToast 1s ease;
+}
+
+
+
+  @keyframes enterToast{
+    0%{
+      transform: translateX(100%);
+    }
+
+    100%{
+      transform: translateX(0);
+    }
+  }
+
+    @keyframes exitToast{
+    0%{
+      transform: translateX(0);
+    }
+
+    100%{
+      transform: translateX(150%);
+    }
+  }
+
+  @keyframes timeBar {
+    0%{
+      width: 100%;
+    }
+
+    100%{
+      width: 0;
+    }
+  }

@@ -27,6 +27,16 @@ if ($sql->rowCount() > 0) {
     $tasks = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
+$showToastAdd = false;
+$showToastDelete = false;
+
+if(isset($_GET['status']) && $_GET['status'] === 'added'){
+    $showToastAdd = true;
+}
+
+if(isset($_GET['status']) && $_GET['status'] === 'delete'){
+    $showToastDelete = true;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'create') {
     require_once '../app/actions/create.php';
@@ -143,6 +153,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['rou
 
         </div>
     </div>
+
+    <?php if($showToastAdd === true) : ?>
+        <div class="toast">
+            <div class="iconToast">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="message">
+                <h1>Sucesso</h1>
+                <p>Tarefa Adicionada com sucesso</p>
+            </div>
+        </div>
+
+        <?php endif; ?>
+
+         <?php if($showToastDelete === true) : ?>
+        <div class="toast delete">
+            <div class="iconToast deleteIcon">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+            <div class="message">
+                <h1>Sucesso</h1>
+                <p>Tarefa Deletada com sucesso</p>
+            </div>
+        </div>
+
+        <?php endif; ?>
 
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/script.js"></script>

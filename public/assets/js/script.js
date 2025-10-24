@@ -126,7 +126,27 @@ function handleTaskState(checkbox) {
         console.error("Erro de rede:", error);
       });
   }
+
+  const toast = document.querySelector(".toast")
+
+function toastHidden (){
+  if(toast){
+
+  toast.classList.add('toastExit')
+
+  toast.addEventListener("animationend", () => {
+    toast.style.display= 'none'
+    toast.classList.remove('toastExit');
+  })
+  }
+}
+
+if(toast){
+  setTimeout(toastHidden, 5000)
+}
 });
+
+//script senha
 
 const passwordInput = document.getElementById('senha')
 const iconEye = document.getElementById("eye")
@@ -143,4 +163,8 @@ iconEye.addEventListener('click', function () {
           iconEye.classList.add('fa-eye-slash')
         iconEye.classList.remove('fa-eye')
     }
-})
+});
+
+//script Toast
+
+

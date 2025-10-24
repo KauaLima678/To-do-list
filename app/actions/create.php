@@ -19,7 +19,7 @@ if($task && $titleTask){
     $sql->bindValue(':id_usuario', $userID);
     $sql->bindValue(':title', $titleTask);
     $sql->execute();
-    header('Location: /index.php');
+    header('Location: /index.php?status=added');
     exit();
 
 } else{
