@@ -2,6 +2,7 @@
 session_start();
 require_once '../app/config/auth.php';
 require_once '../app/db/conn.php';
+include '../app/components/sidebar.php';
 
 if(isset($_GET['route']) && $_GET['route'] === 'logout'){
     logout();
@@ -74,43 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['rou
 </head>
 
 <body>
-    <div class="open" id="open" onclick="openSide()">
-        <span class="material-symbols-outlined">
-            first_page
-        </span>
-    </div>
-    <aside id="sidebar">
-        <div class="user">
-            <div class="userinfo">
-                <img src="./assets/imgs/user.jpg"
-                    alt="User image">
-                <p class="username"><?= $_SESSION['username'] ?></p>
-            </div>
-            <div class="close" onclick="closeSide()">
-                <span class="material-symbols-outlined">
-                    first_page
-                </span>
-            </div>
-        </div>
-        <div class="asideNav">
-            <a class="link" href="./add.php">
-                <i class="fa-solid fa-plus"></i>
-                <p class="textLink">Adicionar Tarefa</p>
-            </a>
-            <a class="link">
-                <i class="fa-solid fa-list-check"></i>
-                <p class="textLink">A fazer</p>
-            </a>
-            <a class="link" href="./ending.php">
-                <i class="fa-solid fa-check"></i>
-                    <p class="textLink">Concluídas</p>
-            </a>
-        </div>
-        <a class="logoutArea" href="index.php?route=logout" >
-            <p>Sair</p>
-            <i class="fa-solid fa-right-from-bracket"></i>
-        </a>
-    </aside>
+    <?= sidebar() ?>
     <div class="container">
         <h1>Tarefas a fazer</h1>
         <div class="content">
@@ -184,6 +149,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['rou
 </body>
 
 </html>
-
-
-<!--<i class="fa-solid fa-check"></i> -->

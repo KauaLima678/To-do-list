@@ -96,6 +96,10 @@ aside {
       color: #fff;
       text-decoration: none;
       cursor: pointer;
+      
+      i{
+        transition: .5s ease;
+      }
     }
 }
 
@@ -176,12 +180,19 @@ aside {
         padding: 5px 20px;
 
         .today {
-          background-color: rgb(225, 225, 225);
+          background-color: rgb(255, 255, 255);
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
           padding: 5px 10px;
           border-radius: 20px;
           cursor: pointer;
           font-size: 14px;
-          color: #4c4c4c;
+          color: #35ff3f;
+          transition: .5s ease;
+
+          &:hover{
+            background-color: #d9d9d9;
+            color: #000000;
+          }
         }
       }
 
@@ -198,7 +209,7 @@ aside {
           background-color: #1833ff;
 
           &:hover {
-            background-color: #000c68;
+            background-color: #0019d9;
           }
         }
 
@@ -452,4 +463,44 @@ display: none;
   border-bottom: 1px solid rgba(15, 15, 15, 0.171);
   /* border-radius: 10px; */
   color: #dadada;
+}
+
+.toast{
+  display: flex;
+  align-items: center;
+  background-color: #fbfafa;
+  padding: 20px;
+  gap: 15px;
+  width: 400px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
+  &::after{
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: #35ff3f;
+  }
+
+  .iconToast{
+    i{
+      color: #35ff3f;
+      font-size: 18px;
+    }
+  }
+
+
+  .message{
+    font-size: 16px;
+
+    h1{
+      font-size: 18px;
+    }
+  }
 }

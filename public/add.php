@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../app/db/conn.php';
+include '../app/components/sidebar.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'create') {
     require_once '../app/actions/create.php';
@@ -34,42 +35,19 @@ if ($sql->rowCount() > 0) {
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="./assets/imgs/Favicon.png">
     <link rel="stylesheet" href="./assets/css/home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=first_page" />
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>To do list</title>
 </head>
 
 <body>
-    <aside>
-        <div class="user">
-            <div class="userinfo">
-                <img src="./assets/imgs/user.jpg"
-                    alt="User image">
-                <p class="username"><?= $_SESSION['username'] ?></p>
-            </div>
-            <div class="close">
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-        </div>
-        <div class="asideNav">
-            <a class="link" href="./add.php">
-                <i class="fa-solid fa-plus"></i>
-                <p class="textLink">Adicionar Tarefa</p>
-            </a>
-            <a class="link" href="./index.php">
-                <i class="fa-solid fa-list-check"></i>
-                <p class="textLink">A fazer</p>
-            </a>
-            <a class="link" href="./ending.php">
-                <i class="fa-solid fa-check"></i>
-                    <p class="textLink">Concluídas</p>
-            </a>
-        </div>
-    </aside>
+    <?= sidebar() ?>
     <div class="container">
         <h1>Things to do</h1>
         <div class="content">
