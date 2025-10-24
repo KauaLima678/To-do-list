@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../app/db/conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'create') {
@@ -46,9 +47,9 @@ if ($sql->rowCount() > 0) {
     <aside>
         <div class="user">
             <div class="userinfo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr3jhpAFYpzxx39DRuXIYxNPXc0zI5F6IiMQ&s"
-                alt="User image">
-                <p>User123</p>
+                <img src="./assets/imgs/user.jpg"
+                    alt="User image">
+                <p class="username"><?= $_SESSION['username'] ?></p>
             </div>
             <div class="close">
                 <i class="fa-solid fa-xmark"></i>

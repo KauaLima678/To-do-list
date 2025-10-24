@@ -11,22 +11,23 @@ if (isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
     $password = $_POST['senha'] ?? ''; 
 
-    if (empty($username) || empty($password)) {
+    if (empty($email) || empty($password)) {
         $error_message = 'Por favor, preencha todos os campos.';
     } else {
         // Prepara a consulta para buscar o usuário pelo username
-        $stmt = $pdo->prepare("SELECT id, nome, senhha FROM usuarios WHERE nome = :nome");
-        $stmt->execute(['username' => $username]);
+        $stmt = $pdo->prepare("SELECT id, nome, senha FROM usuarios WHERE email = :email");
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch();
 
         // Verifica se o usuário existe e se a senha está correta
         if ($user && password_verify($password, $user['senha'])) {
             // Login bem-sucedido
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['nome'] = $user['nome'];
+            $_SESSION['username'] = $user['nome'];
             
             header('Location: index.php');
             exit;
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form method="post">
             <div class="inputContent">
                 <label for="email" class="label">Email</label>
-                <div class="input">
+                <div class="input <?= $error_message ? 'inputErr' : '' ?>">
                     <i class="fa-regular fa-envelope icon"></i>
                     <input type="email" name="email" placeholder="Insira seu Email">
                 </div>
@@ -90,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <?php if($error_message): ?>
-            <p>Email ou senha invalidos</p>
+            <p class="err">Email ou senha invalidos</p>
             <?php endif; ?>
             <div class="buttonArea">
                 <button type="submit">Entrar</button>

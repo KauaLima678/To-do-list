@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../app/db/conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'create') {
@@ -51,9 +52,9 @@ if ($sql->rowCount() > 0) {
     <aside id="sidebar">
         <div class="user">
             <div class="userinfo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr3jhpAFYpzxx39DRuXIYxNPXc0zI5F6IiMQ&s"
+                <img src="./assets/imgs/user.jpg"
                     alt="User image">
-                <p class="username">User123</p>
+                <p class="username"><?= $_SESSION['username'] ?></p>
             </div>
             <div class="close" onclick="closeSide()">
                 <span class="material-symbols-outlined">
@@ -77,12 +78,12 @@ if ($sql->rowCount() > 0) {
         </div>
     </aside>
     <div class="container">
-        <h1>Things to do</h1>
+        <h1>Tarefas concluídas</h1>
         <div class="content">
             <div class="tasksList">
                 <?php if (count($tasks) === 0): ?>
                     <div class="notFound">
-                        <img src="./assets/imgs/notFound.png" alt="notFound" class="image">
+                        <img src="./assets/imgs/notFound2.png" alt="notFound" class="image">
                         <div class="text">
                             <p>Ops! Parece que você ainda não finalizou nenhuma tarefa!</p>
                         </div>

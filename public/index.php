@@ -1,5 +1,31 @@
 <?php
+session_start();
+require_once '../app/config/auth.php';
 require_once '../app/db/conn.php';
+
+if(isset($_GET['route']) && $_GET['route'] === 'logout'){
+    logout();
+    header ('Location: login.php');
+    exit;
+}
+
+
+if (!isLogged()) {
+    header('Location: login.php'); // Redireciona para login.php
+    exit; // Crucial: pare a execução do script para evitar que o conteúdo da página seja exibido
+}
+
+$logged_in_user_id = $_SESSION['user_id'];
+
+$tasks = [];
+
+$sql = $pdo->prepare("SELECT * FROM tasks WHERE completed = 0 AND id_usuario = :user_id ORDER BY id DESC");
+$sql->execute(['user_id' => $logged_in_user_id]); // Usa o ID do usuário logado
+
+if ($sql->rowCount() > 0) {
+    $tasks = $sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'create') {
     require_once '../app/actions/create.php';
@@ -17,13 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['rou
     require_once '../app/actions/update.php';
 }
 
-$tasks = [];
 
-$sql = $pdo->query("SELECT * FROM tasks WHERE completed = 0 ORDER BY id DESC");
 
-if ($sql->rowCount() > 0) {
-    $tasks = $sql->fetchAll((PDO::FETCH_ASSOC));
-}
+
+
+
+
+// 3. SE CHEGOU AQUI, O USUÁRIO ESTÁ LOGADO.
+// Agora você pode recuperar o ID do usuário logado da sessão
+ // A sua lógica do BD deve definir isso no login.php
+
 
 
 
@@ -53,9 +82,9 @@ if ($sql->rowCount() > 0) {
     <aside id="sidebar">
         <div class="user">
             <div class="userinfo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr3jhpAFYpzxx39DRuXIYxNPXc0zI5F6IiMQ&s"
+                <img src="./assets/imgs/user.jpg"
                     alt="User image">
-                <p class="username">User123</p>
+                <p class="username"><?= $_SESSION['username'] ?></p>
             </div>
             <div class="close" onclick="closeSide()">
                 <span class="material-symbols-outlined">
@@ -77,6 +106,10 @@ if ($sql->rowCount() > 0) {
                     <p class="textLink">Concluídas</p>
             </a>
         </div>
+        <a class="logoutArea" href="index.php?route=logout" >
+            <p>Sair</p>
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
     </aside>
     <div class="container">
         <h1>Tarefas a fazer</h1>
@@ -86,10 +119,10 @@ if ($sql->rowCount() > 0) {
                     <div class="notFound">
                         <img src="./assets/imgs/notFound2.png" alt="notFound" class="image">
                         <div class="text">
-                            <p>Parece que você ainda não cadastrou nenhuma tarefa!</p>
+                            <p>Parece que você ainda não possui nenhuma tarefa!</p>
                         </div>
                         <div class="button">
-                            <a href="./cadastrar.php" class="addTaskBtn">Cadastre aqui </a>
+                            <a href="./add.php" class="addTaskBtn">Adicione aqui </a>
                         </div>
                     </div>
                 <?php else: ?>

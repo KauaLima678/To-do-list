@@ -96,15 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" name="senha" placeholder="Digite sua senha" id="senha">
                     <i  class="fa-solid fa-eye-slash icon" id="eye"></i>
                 </div>
-                <div class="actions">
-                    <div class="remember">
-                        <input type="checkbox">
-                        <span>Lembrar de mim</span>
-                    </div>
-                    <div class="forget">
-                        <span>Esqueci minha senha </span>
-                    </div>
-                </div>
             </div>
             <!-- <?php if($error_message): ?>
             <p>Email ou senha invalidos</p>
