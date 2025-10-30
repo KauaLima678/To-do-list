@@ -49,7 +49,7 @@ if ($sql->rowCount() > 0) {
 <body>
     <?= sidebar() ?>
     <div class="container">
-        <h1>Things to do</h1>
+        <h1>Adicionar Tarefa</h1>
         <div class="content">
                  <div class="formContainer">
                 <form method="POST" action="index.php?route=create">
@@ -67,7 +67,7 @@ if ($sql->rowCount() > 0) {
                                     </div>
                                 </div>
                                 <div class="buttonArea">
-                                    <button type="submit" class="submit">Add Task</button>
+                                    <button type="submit" class="submit">Adicionar Tarefa</button>
                                 </div>
                             </div>
                         </div>
